@@ -96,7 +96,7 @@ with open(filename, "r") as infile:
         elements = elements[0].split(',')
         id_ = elements[0]
         event = Events(id_,
-                       elements[1],
+                       elements[3],
                        elements[2])
         events_[id_] = event
 
