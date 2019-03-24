@@ -120,5 +120,3 @@ while (1):
     else:
         answers[questions[x.__str__()].question_id].answer = user_answer
         print(get_result(x.__str__()))
-
-print(100)
