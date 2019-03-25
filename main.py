@@ -1,6 +1,7 @@
 from question import Question
 from dates_and_events import Events
 from answers import Answers
+import random
 words = ["a", "b"]
 events = []
 years = []
@@ -8,7 +9,6 @@ string = ' '
 filename = "/home/sofialyubina/PycharmProjects/history/dates.csv"
 filename2 = "/home/sofialyubina/PycharmProjects/history/questions.csv"
 filename3 = "/home/sofialyubina/PycharmProjects/history/answers.csv"
-import random
 
 
 def get_words(text):
@@ -64,7 +64,7 @@ with open(filename2, "r") as infile:
                             elements[1],
                             elements[2],
                             elements[3])
-        questions[id_] = question
+    questions[id_] = question
 
 
 def get_result(got_id):
@@ -112,7 +112,7 @@ with open(filename3, "r") as infile:
         answers[id_] = answer
 
 while (1):
-    x = random.randint(1, 9)
+    x = random.randint(1, 25)
     print(questions[x.__str__()].question)
     user_answer = input()
     if user_answer == "STOP":
