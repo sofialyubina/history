@@ -5,9 +5,9 @@ words = ["a", "b"]
 events = []
 years = []
 string = ' '
-filename = "/home/sofialyubina/PycharmProjects/history/dates.csv"
-filename2 = "/home/sofialyubina/PycharmProjects/history/questions.csv"
-filename3 = "/home/sofialyubina/PycharmProjects/history/answers.csv"
+filename = "dates.csv"
+filename2 = "questions.csv"
+filename3 = "answers.csv"
 import random
 
 
