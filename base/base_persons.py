@@ -1,4 +1,4 @@
-class Persons:
+class Person:
 
     def __init__(self, person_id, name, description):
         self.person_id = person_id

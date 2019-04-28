@@ -1,4 +1,4 @@
-class Tasks_events:
+class TasksEvent:
 
     def __init__(self, task_id, event_id, question, level):
         self.task_id = task_id
