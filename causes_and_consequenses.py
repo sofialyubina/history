@@ -1,5 +1,5 @@
-from data_base import Global_Events
-from data_base import Sentenses_with_keys
+from base_events import Global_Events
+from base_events import Sentenses_with_keys
 from nltk.tokenize import sent_tokenize
 from nltk.stem import SnowballStemmer
 
