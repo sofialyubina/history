@@ -1,4 +1,7 @@
-class TasksReason:
+from .task import Task
+
+
+class TasksReason(Task):
 
     def __init__(self, task_id, reason_id, level):
         self.task_id = task_id

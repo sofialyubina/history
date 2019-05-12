@@ -1,4 +1,4 @@
-class GlobalEvent:
+class Event:
 
     def __init__(self, event_id, start_year, start_month, start_day, end_year, end_month, end_day, event_):
         self.event_id = event_id

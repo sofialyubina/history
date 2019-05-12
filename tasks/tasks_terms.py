@@ -1,4 +1,7 @@
-class TasksTerm:
+from .task import Task
+
+
+class TasksTerm(Task):
 
     def __init__(self, task_id, term_id, level):
         self.task_id = task_id
