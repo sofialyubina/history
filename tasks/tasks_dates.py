@@ -1,5 +1,5 @@
-from .task import Task
-from ..algorithms import matching
+from tasks.task import Task
+from algorithms import matching
 
 class TasksDate(Task):
     def __init__(self, task_id, event_id, question, level):

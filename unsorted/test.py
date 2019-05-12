@@ -1,4 +1,4 @@
-from ..base.knowledge_db import KnowledgeDatabase
+from base.knowledge_db import KnowledgeDatabase
 
-path = ".data/"
-# database = KnowledgeDatabase(path)
+path = "../data"
+database = KnowledgeDatabase(path)
