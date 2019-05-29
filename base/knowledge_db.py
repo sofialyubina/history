@@ -82,8 +82,9 @@ class KnowledgeDatabase(object):
         for index, row in data.iterrows():
             self.tasks_date[row["task_id"]] = TasksDate(task_id=row["task_id"],
                                                         event_id=row["event_id"],
+                                                        question=row["question"],
                                                         level=row["level"],
-                                                        question=["question"])
+                                                        database=self)
 
     def _create_tasks_event(self, path):
         data = pandas.read_csv(os.path.join(path, "tasks_events.csv"))
@@ -92,15 +93,17 @@ class KnowledgeDatabase(object):
             self.tasks_event[row["task_id"]] = TasksEvent(task_id=row["task_id"],
                                                           event_id=row["event_id"],
                                                           level=row["level"],
-                                                          question=["question"])
+                                                          question=row["question"],
+                                                          database=self)
 
     def _create_tasks_person(self, path):
         data = pandas.read_csv(os.path.join(path, "tasks_persons.csv"))
-        self.tasks_person = {}
+        self.tasks_persons = {}
         for index, row in data.iterrows():
-            self.tasks_person[row["task_id"]] = TasksPerson(task_id=row["task_id"],
-                                                            person_id=row["person_id"],
-                                                            level=row["level"])
+            self.tasks_persons[row["task_id"]] = TasksPerson(task_id=row["task_id"],
+                                                             person_id=row["person_id"],
+                                                             level=row["level"],
+                                                             database=self)
 
     def _create_tasks_result(self, path):
         data = pandas.read_csv(os.path.join(path, "tasks_results.csv"))
@@ -108,7 +111,8 @@ class KnowledgeDatabase(object):
         for index, row in data.iterrows():
             self.tasks_result[row["task_id"]] = TasksResult(task_id=row["task_id"],
                                                             result_id=["result_id"],
-                                                            level=row["level"])
+                                                            level=row["level"],
+                                                            database= self)
 
     def _create_tasks_reason(self, path):
         data = pandas.read_csv(os.path.join(path, "tasks_reasons.csv"))
@@ -116,7 +120,8 @@ class KnowledgeDatabase(object):
         for index, row in data.iterrows():
             self.tasks_reason[row["task_id"]] = TasksReason(task_id=row["task_id"],
                                                             reason_id=row["reason_id"],
-                                                            level=row["level"])
+                                                            level=row["level"],
+                                                            database= self)
 
     def _create_tasks_terms(self, path):
         data = pandas.read_csv(os.path.join(path, "tasks_terms.csv"))
@@ -124,7 +129,35 @@ class KnowledgeDatabase(object):
         for index, row in data.iterrows():
             self.tasks_term[row["task_id"]] = TasksTerm(task_id=row["task_id"],
                                                         term_id=row["term_id"],
-                                                        level=row["level"])
+                                                        level=row["level"],
+                                                        database=self)
 
     def get_event(self, event_id):
         return self.events[event_id]
+
+    def get_person(self, person_id):
+        return self.persons[person_id]
+
+    def get_terms(self, term_id):
+        return self.terms[term_id]
+
+    def get_result(self, result_id):
+        return self.results[result_id]
+
+    def get_reasons(self, reason_id):
+        return self.reasons[reason_id]
+
+    def get_tasks_date(self, task_id):
+        return self.tasks_date[task_id]
+
+    def get_tasks_event(self, task_id):
+        return self.tasks_event[task_id]
+
+    def get_tasks_term(self, task_id):
+        return self.tasks_term[task_id]
+
+    def get_tasks_result(self, task_id):
+        return self.tasks_result[task_id]
+
+    def get_tasks_reason(self, task_id):
+        return self.tasks_reason[task_id]
