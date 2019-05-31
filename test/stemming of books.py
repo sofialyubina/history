@@ -3,7 +3,11 @@ from nltk.tokenize import sent_tokenize
 stemmer = SnowballStemmer("russian")
 
 
-filename2 = "/home/sofialyubina/downloads/big book.txt"
+filename2 = "/home/sofialyubina/tools/word2vec/bin/solovev_chtenia"
+
+a = "4 приказ вольных хлебопашцах"
+b = "Иван 4 издал приказ о вольных"
+c = "меня зовут игорь"
 
 
 def process_data(data):
@@ -28,11 +32,7 @@ for x in range(len(sents)):
     sents[x] = process_data(sents[x])
 
 
-with open("/home/sofialyubina/downloads/recreated big book.txt", "w") as outfile:
+with open("/home/sofialyubina/tools/word2vec/bin/recreated solovev_chtenia.txt", "w") as outfile:
     for sent_with_key in sents:
         print(sent_with_key, file=outfile)
 
-#
-# with open("/home/sofialyubina/PycharmProjects/history/history.txt", "w") as outfile:
-#     for sent_with_key in original_sents:
-#         print(sent_with_key, file=outfile)
