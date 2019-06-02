@@ -3,7 +3,7 @@ from nltk.tokenize import sent_tokenize
 stemmer = SnowballStemmer("russian")
 import re
 
-filename2 = "/home/sofialyubina/books/book_1.processed"
+filename2 = "/home/sofialyubina/books/main_book.processed"
 
 
 def process_data(data):
@@ -21,8 +21,9 @@ def process_data(data):
 
 
 with open(filename2, "r") as infile:
-    data = " ".join(infile.read().split())
-    sents = sent_tokenize(data)
+    sents = []
+    for line in infile:
+        sents.append(line.strip())
 
 original_sents = []
 for x in range(len(sents)):
@@ -30,7 +31,7 @@ for x in range(len(sents)):
     sents[x] = process_data(sents[x])
 
 
-with open("/home/sofialyubina/books/book_1.stemmed", "w") as outfile:
+with open("/home/sofialyubina/books/main_book.stemmed", "w") as outfile:
     for sent_with_key in sents:
         print(sent_with_key, file=outfile)
 

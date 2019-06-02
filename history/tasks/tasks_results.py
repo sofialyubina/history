@@ -8,6 +8,9 @@ class TasksResult(Task):
         self.result_id = result_id
         self.level = level
         self.database = database
+        result = database.results[result_id]
+        event = database.events[result.event_id]
+        self.question = "Назовите последствия данного события:" + event.event
 
     def score(self, answer):
         return True
