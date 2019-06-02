@@ -5,6 +5,7 @@ path = "../data"
 database = KnowledgeDatabase(path)
 
 task_type = KnowledgeDatabase.TaskType.DATE
+task_type = "date"
 task_id = database.get_random_task_id(task_type)
 
 task = database.get_task(task_id, task_type)

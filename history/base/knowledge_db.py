@@ -20,7 +20,7 @@ import os
 
 class KnowledgeDatabase(object):
 
-    class TaskType(Enum):
+    class TaskType(str, Enum):
         DATE = "date"
         EVENT = "event"
         PERSON = "person"
