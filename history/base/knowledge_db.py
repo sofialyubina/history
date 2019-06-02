@@ -60,7 +60,7 @@ class KnowledgeDatabase(object):
         for index, row in data.iterrows():
             self.persons[row["person_id"]] = Person(person_id=row["person_id"],
                                                     name=row["name"],
-                                                    description=["description"])
+                                                    description=row["description"])
 
     def _create_terms(self, path):
         data = pandas.read_csv(os.path.join(path, "terms.csv"))

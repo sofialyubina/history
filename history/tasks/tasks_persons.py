@@ -9,9 +9,9 @@ class TasksPerson(Task):
         self.person_id = person_id
         self.level = level
         self.database = database
+        self.person = self.database.get_person(person_id)
+        self.question = "Кто это? {}".format(self.person.description)
 
     def score(self, answer):
-        answer = matching.get_words(answer)
-        person = self.database.persons(self.person_id)
-        result = matching.matching(person.name, answer)
+        result = matching.matching(self.person.name, answer)
         return result
