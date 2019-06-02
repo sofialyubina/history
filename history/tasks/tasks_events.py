@@ -12,8 +12,6 @@ class TasksEvent(Task):
         self.database = database
 
     def score(self, answer):
-        answer = matching.get_words(answer)
         event = self.database.get_event(self.event_id)
         result = matching.matching(event.event, answer)
-
         return result
