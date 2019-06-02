@@ -1,24 +1,22 @@
 from nltk.stem import SnowballStemmer
 from nltk.tokenize import sent_tokenize
 stemmer = SnowballStemmer("russian")
+import re
 
-
-filename2 = "/home/sofialyubina/tools/word2vec/bin/solovev_chtenia"
-
-a = "4 приказ вольных хлебопашцах"
-b = "Иван 4 издал приказ о вольных"
-c = "меня зовут игорь"
+filename2 = "/home/sofialyubina/books/book_1.processed"
 
 
 def process_data(data):
-    data = data.lower()
-    data += " "
+    # data = data.lower()
+    # data += " "
     words = data.split(" ")
 
     for i in range(len(words)):
         words[i] = stemmer.stem(words[i])
 
     data = " ".join(words)
+    # data = re.sub("ё", "е", data)
+    # data = re.sub("[^а-я0-9a-z ]", " ", data)
     return data
 
 
@@ -32,7 +30,7 @@ for x in range(len(sents)):
     sents[x] = process_data(sents[x])
 
 
-with open("/home/sofialyubina/tools/word2vec/bin/recreated solovev_chtenia.txt", "w") as outfile:
+with open("/home/sofialyubina/books/book_1.stemmed", "w") as outfile:
     for sent_with_key in sents:
         print(sent_with_key, file=outfile)
 

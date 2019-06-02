@@ -7,4 +7,5 @@ task = database.tasks_date[3]
 print(task.question)
 user_answer = input()
 
-print(task.score(database.events[database.get_tasks_date(3).event_id].start_year), user_answer)
+print(task.score(user_answer))
+
