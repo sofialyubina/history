@@ -10,5 +10,5 @@ class TasksTerm(Task):
         self.database = database
 
     def score(self, answer):
-        return 0
+        return True
 
