@@ -1,4 +1,6 @@
 import pandas
+from enum import Enum
+import numpy as np
 
 from .base_events import Event
 from .base_persons import Person
@@ -17,6 +19,14 @@ import os
 
 
 class KnowledgeDatabase(object):
+
+    class TaskType(Enum):
+        DATE = "date"
+        EVENT = "event"
+        PERSON = "person"
+        TERM = "term"
+        REASON = "reason"
+        RESULT = "result"
 
     def __init__(self, path):
         self._create_events(path)
@@ -37,7 +47,7 @@ class KnowledgeDatabase(object):
         for index, row in data.iterrows():
             self.events[row["event_id"]] = Event(event_id=row["event_id"],
                                                  start_year=row["start_year"],
-                                                 start_month = row["start_month"],
+                                                 start_month=row["start_month"],
                                                  start_day=row["start_day"],
                                                  end_year=row["end_year"],
                                                  end_month=row["end_month"],
@@ -112,7 +122,7 @@ class KnowledgeDatabase(object):
             self.tasks_result[row["task_id"]] = TasksResult(task_id=row["task_id"],
                                                             result_id=["result_id"],
                                                             level=row["level"],
-                                                            database= self)
+                                                            database=self)
 
     def _create_tasks_reason(self, path):
         data = pandas.read_csv(os.path.join(path, "tasks_reasons.csv"))
@@ -121,7 +131,7 @@ class KnowledgeDatabase(object):
             self.tasks_reason[row["task_id"]] = TasksReason(task_id=row["task_id"],
                                                             reason_id=row["reason_id"],
                                                             level=row["level"],
-                                                            database= self)
+                                                            database=self)
 
     def _create_tasks_terms(self, path):
         data = pandas.read_csv(os.path.join(path, "tasks_terms.csv"))
@@ -138,26 +148,64 @@ class KnowledgeDatabase(object):
     def get_person(self, person_id):
         return self.persons[person_id]
 
-    def get_terms(self, term_id):
+    def get_term(self, term_id):
         return self.terms[term_id]
 
     def get_result(self, result_id):
         return self.results[result_id]
 
-    def get_reasons(self, reason_id):
+    def get_reason(self, reason_id):
         return self.reasons[reason_id]
 
-    def get_tasks_date(self, task_id):
+    def get_task_date(self, task_id):
         return self.tasks_date[task_id]
 
-    def get_tasks_event(self, task_id):
+    def get_task_event(self, task_id):
         return self.tasks_event[task_id]
 
-    def get_tasks_term(self, task_id):
+    def get_task_person(self, task_id):
+        return self.tasks_persons[task_id]
+
+    def get_task_term(self, task_id):
         return self.tasks_term[task_id]
 
-    def get_tasks_result(self, task_id):
+    def get_task_result(self, task_id):
         return self.tasks_result[task_id]
 
-    def get_tasks_reason(self, task_id):
+    def get_task_reason(self, task_id):
         return self.tasks_reason[task_id]
+
+    def get_random_task_id(self, task_type):
+        if task_type == self.TaskType.DATE:
+            tasks = self.tasks_date
+        elif task_type == self.TaskType.EVENT:
+            tasks = self.tasks_event
+        elif task_type == self.TaskType.TERM:
+            tasks = self.tasks_term
+        elif task_type == self.TaskType.PERSON:
+            tasks = self.tasks_persons
+        elif task_type == self.TaskType.RESULT:
+            tasks = self.tasks_result
+        elif task_type == self.TaskType.REASON:
+            tasks = self.tasks_reason
+        else:
+            raise ValueError("Not supported task type {}".format(task_type))
+
+        # return random task_id
+        return np.random.choice(list(tasks.keys()))
+
+    def get_task(self, task_id, task_type):
+        if task_type == self.TaskType.DATE:
+            return self.get_task_date(task_id)
+        elif task_type == self.TaskType.EVENT:
+            return self.get_task_event(task_id)
+        elif task_type == self.TaskType.TERM:
+            return self.get_task_term(task_id)
+        elif task_type == self.TaskType.PERSON:
+            return self.get_task_person(task_id)
+        elif task_type == self.TaskType.RESULT:
+            return self.get_task_result(task_id)
+        elif task_type == self.TaskType.REASON:
+            return self.get_task_reason(task_id)
+        else:
+            raise ValueError("Not supported task type {}".format(task_type))

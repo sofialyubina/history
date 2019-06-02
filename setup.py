@@ -9,7 +9,7 @@ with open(path.join(here, 'README.md'), encoding='utf-8') as f:
     long_description = f.read()
 
 setup(
-    name='hisory',
+    name='history',
     version='0.0.1',
     description='AI history project',
     long_description=long_description,
@@ -25,6 +25,5 @@ setup(
     packages=find_packages(),
 
     keywords='nlp',
-    install_requires=["gensim", "sklearn", "numpy",
-                      "editdistance", "tqdm", "nltk"],
+    install_requires=["numpy", "editdistance", "tqdm", "nltk"],
 )
