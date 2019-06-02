@@ -1,4 +1,4 @@
-from tasks.task import Task
+from .task import Task
 
 
 class TasksTerm(Task):

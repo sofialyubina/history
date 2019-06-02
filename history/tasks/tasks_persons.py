@@ -1,5 +1,5 @@
-from tasks.task import Task
-from algorithms import matching
+from .task import Task
+from ..algorithms import matching
 
 
 class TasksPerson(Task):

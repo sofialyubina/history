@@ -1,8 +1,9 @@
-from tasks.task import Task
-from algorithms import matching
+from .task import Task
+from ..algorithms import matching
 
 
-class TasksDate(Task):
+class TasksEvent(Task):
+
     def __init__(self, task_id, event_id, question, level, database):
         self.task_id = task_id
         self.event_id = event_id
@@ -11,6 +12,8 @@ class TasksDate(Task):
         self.database = database
 
     def score(self, answer):
-        event = self.database.events[self.event_id]
-        result = matching.matching(event.start_year, answer)
+        answer = matching.get_words(answer)
+        event = self.database.get_event(self.event_id)
+        result = matching.matching(event.event, answer)
+
         return result

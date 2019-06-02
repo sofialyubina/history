@@ -1,17 +1,17 @@
 import pandas
 
-from base.base_events import Event
-from base.base_persons import Person
-from base.base_reasons import Reason
-from base.base_results import Result
-from base.base_terms import Term
+from .base_events import Event
+from .base_persons import Person
+from .base_reasons import Reason
+from .base_results import Result
+from .base_terms import Term
 
-from tasks.tasks_dates import TasksDate
-from tasks.tasks_events import TasksEvent
-from tasks.tasks_persons import TasksPerson
-from tasks.tasks_reasons import TasksReason
-from tasks.tasks_results import TasksResult
-from tasks.tasks_terms import TasksTerm
+from ..tasks.tasks_dates import TasksDate
+from ..tasks.tasks_events import TasksEvent
+from ..tasks.tasks_persons import TasksPerson
+from ..tasks.tasks_reasons import TasksReason
+from ..tasks.tasks_results import TasksResult
+from ..tasks.tasks_terms import TasksTerm
 
 import os
 
