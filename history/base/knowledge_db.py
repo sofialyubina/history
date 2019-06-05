@@ -58,9 +58,10 @@ class KnowledgeDatabase(object):
         data = pandas.read_csv(os.path.join(path, "persons.csv"))
         self.persons = {}
         for index, row in data.iterrows():
-            self.persons[row["person_id"]] = Person(person_id=row["person_id"],
-                                                    name=row["name"],
-                                                    description=row["description"])
+            self.persons[row["description_id"]] = Person(description_id=row["description_id"],
+                                                         person_id=row["person_id"],
+                                                         name=row["name"],
+                                                         description=row["description"])
 
     def _create_terms(self, path):
         data = pandas.read_csv(os.path.join(path, "terms.csv"))
@@ -111,7 +112,7 @@ class KnowledgeDatabase(object):
         self.tasks_persons = {}
         for index, row in data.iterrows():
             self.tasks_persons[row["task_id"]] = TasksPerson(task_id=row["task_id"],
-                                                             person_id=row["person_id"],
+                                                             description_id=row["description_id"],
                                                              level=row["level"],
                                                              database=self)
 

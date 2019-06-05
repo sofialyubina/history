@@ -4,12 +4,12 @@ from ..algorithms import matching
 
 class TasksPerson(Task):
 
-    def __init__(self, task_id, person_id,  level, database):
+    def __init__(self, task_id, description_id,  level, database):
         self.task_id = task_id
-        self.person_id = person_id
+        self.description_id = description_id
         self.level = level
         self.database = database
-        self.person = self.database.get_person(person_id)
+        self.person = self.database.get_person(description_id)
         self.question = "Кто это? {}".format(self.person.description)
 
     def score(self, answer):
