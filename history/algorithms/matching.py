@@ -23,6 +23,9 @@ def matching(true_answer, user_answer):
     true_words = get_words(true_answer)
     user_words = get_words(user_answer)
 
+    if len(user_words) == 0:
+        return False
+
     if n > len(user_words):
         n = len(user_words)
 
