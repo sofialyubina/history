@@ -12,11 +12,4 @@ class TasksDate(Task):
 
     def score(self, answer):
         event = self.database.events[self.event_id]
-
-        numbers = []
-        for word in answer.split():
-            if word.isdigit():
-                numbers.append(word)
-
-        result = matching.matching(event.start_year, " ".join(numbers))
-        return result
+        return matching.match_with_year(event.start_year, answer)

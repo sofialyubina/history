@@ -13,5 +13,5 @@ class TasksPerson(Task):
         self.question = "Кто это? {}".format(self.person.description)
 
     def score(self, answer):
-        result = matching.matching(self.person.name, answer)
+        result = matching.match_with_answer(self.person.name, answer)
         return result
