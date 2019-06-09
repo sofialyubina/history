@@ -1,4 +1,5 @@
 from .task import Task
+from ..algorithms import matching
 
 
 class TasksResult(Task):
@@ -8,9 +9,9 @@ class TasksResult(Task):
         self.result_id = result_id
         self.level = level
         self.database = database
-        result = database.results[result_id]
-        event = database.events[result.event_id]
-        self.question = "Назовите последствия данного события:" + event.event
+        self.result = database.results[result_id]
+        self.event = database.events[self.result.event_id]
+        self.question = "Назовите последствия данного события: " +self.event.event
 
     def score(self, answer):
-        return True
+        return matching.match_with_answer(self.result.description, answer)
