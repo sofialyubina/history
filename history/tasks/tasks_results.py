@@ -15,4 +15,5 @@ class TasksResult(Task):
         self.question = "Назовите последствия данного события: " + self.event.event
 
     def score(self, answer):
-        return matching.calc_vectors_score(self.result.description, answer, self.database.vectors) >= self.threshold
+        #return matching.calc_vectors_score(self.result.description, answer, self.database.vectors) >= self.threshold
+        return matching.calc_vectors_score(self.result.description, answer, self.database.vectors) >= 0.5
