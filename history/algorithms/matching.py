@@ -15,6 +15,47 @@ def get_words(text, min_len=0):
     return words
 
 
+def match_with_year(start_year, user_answer):
+    start_year = str(start_year)
+    for word in get_words(user_answer):
+        if word == start_year:
+            return True
+
+    return False
+
+def match_with_answer(true_answer, user_answer):
+    true_words = get_words(true_answer, 2)
+    user_words = get_words(user_answer, 2)
+
+    # logic depends on number of words
+    if len(user_words) == 0:
+        return False
+
+    if len(true_words) == 1:
+        return true_words[0] in user_words
+
+    # Process special case with one user word
+    if len(user_words) == 1:
+        if len(true_words) == 1:
+            return user_words[0] == true_words[0]
+        return False
+
+    # check if all words from true_answer in user_answer
+    if sum([word in user_words for word in true_words]) == len(true_words):
+        return True
+
+    # get all user bi-grams
+    user_bigrams = ["_".join((user_words[i], user_words[i + 1])) for i in range(len(user_words) - 1)]
+    true_bigrams = ["_".join((true_words[i], true_words[i + 1])) for i in range(len(true_words) - 1)]
+
+    # if at least one bigram in common return True
+    for user_bigram in user_bigrams:
+        if user_bigram in true_bigrams:
+            return True
+
+    # in all other cases return False
+    return False
+
 def matching(true_answer, user_answer):
     n = 2
 
@@ -22,6 +63,9 @@ def matching(true_answer, user_answer):
 
     true_words = get_words(true_answer)
     user_words = get_words(user_answer)
+
+    if len(user_words) == 0:
+        return False
 
     if n > len(user_words):
         n = len(user_words)

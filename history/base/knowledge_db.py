@@ -34,6 +34,7 @@ class KnowledgeDatabase(object):
         self._create_reasons(path)
         self._create_results(path)
         self._create_terms(path)
+
         self._create_tasks_date(path)
         self._create_tasks_event(path)
         self._create_tasks_person(path)
@@ -83,7 +84,7 @@ class KnowledgeDatabase(object):
         data = pandas.read_csv(os.path.join(path, "results.csv"))
         self.results = {}
         for index, row in data.iterrows():
-            self.results[row["result_id"]] = Result(result_id=row["esult_id"],
+            self.results[row["result_id"]] = Result(result_id=row["result_id"],
                                                     event_id=row["event_id"],
                                                     description=row["description"])
 
@@ -121,7 +122,7 @@ class KnowledgeDatabase(object):
         self.tasks_result = {}
         for index, row in data.iterrows():
             self.tasks_result[row["task_id"]] = TasksResult(task_id=row["task_id"],
-                                                            result_id=["result_id"],
+                                                            result_id=row["result_id"],
                                                             level=row["level"],
                                                             database=self)
 

@@ -1,7 +1,7 @@
 from history.base.knowledge_db import KnowledgeDatabase
 from history.tasks.tasks_dates import TasksDate
 
-path = "../data"
+path = "../history/data"
 database = KnowledgeDatabase(path)
 
 

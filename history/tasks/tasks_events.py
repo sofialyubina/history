@@ -13,5 +13,6 @@ class TasksEvent(Task):
 
     def score(self, answer):
         event = self.database.get_event(self.event_id)
-        result = matching.matching(event.event, answer)
+        #result = matching.matching(event.event, answer)
+        result = matching.match_with_answer(event.event, answer)
         return result

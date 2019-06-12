@@ -12,13 +12,4 @@ class TasksDate(Task):
 
     def score(self, answer):
         event = self.database.events[self.event_id]
-        string = answer
-        string2 = string.split(" ")
-        for i in range(len(string2)):
-            if string2[i].islower():
-                continue
-            else:
-                number = string2[i]
-
-        result = matching.matching(event.start_year, number)
-        return result
+        return matching.match_with_year(event.start_year, answer)
