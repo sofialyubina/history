@@ -1,4 +1,19 @@
 import re
+import numpy as np
+
+
+vectors = {}
+with open("/var/www/html/vectors", "r") as infile:
+    infile.readline()
+
+    for line in infile:
+        elements = line.strip().split(" ")
+        word = elements[0]
+        vector = []
+        for element in elements[1:]:
+            vector.append(float(element))
+
+        vectors[word] = np.array(vector)
 
 
 def clean_text(text):
@@ -80,3 +95,33 @@ def matching(true_answer, user_answer):
             final_answer = True
 
     return final_answer
+
+
+def calc_vector_len(vector):
+    return np.sqrt(np.sum(vector * vector))
+
+
+def middle_vector(a, vectors=vectors):
+    result = np.zeros(300)
+
+    words = get_words(a)
+    number = 0
+
+    for n in range(len(words)):
+        word = words[n]
+        if word in vectors:
+            result  = vectors[word] +  result
+            number += 1
+
+    if number > 0:
+        result /= number
+
+    return result
+
+
+def calc_vectors_score(first, second, vectors=vectors):
+    a = middle_vector(first, vectors)
+    b = middle_vector(second, vectors)
+
+    score = np.sum(a * b) / calc_vector_len(a) / calc_vector_len(b)
+    return score

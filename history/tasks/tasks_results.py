@@ -4,14 +4,15 @@ from ..algorithms import matching
 
 class TasksResult(Task):
 
-    def __init__(self, task_id, result_id, level, database):
+    def __init__(self, task_id, result_id, level, database, threshold):
         self.task_id = task_id
         self.result_id = result_id
         self.level = level
         self.database = database
+        self.threshold = threshold
         self.result = database.results[result_id]
         self.event = database.events[self.result.event_id]
-        self.question = "Назовите последствия данного события: " +self.event.event
+        self.question = "Назовите последствия данного события: " + self.event.event
 
     def score(self, answer):
-        return matching.match_with_answer(self.result.description, answer)
+        return matching.calc_vectors_score(self.result.description, answer) >= self.threshold

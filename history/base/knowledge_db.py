@@ -124,7 +124,8 @@ class KnowledgeDatabase(object):
             self.tasks_result[row["task_id"]] = TasksResult(task_id=row["task_id"],
                                                             result_id=row["result_id"],
                                                             level=row["level"],
-                                                            database=self)
+                                                            database=self,
+                                                            threshold=row["threshold"])
 
     def _create_tasks_reason(self, path):
         data = pandas.read_csv(os.path.join(path, "tasks_reasons.csv"))
@@ -133,7 +134,8 @@ class KnowledgeDatabase(object):
             self.tasks_reason[row["task_id"]] = TasksReason(task_id=row["task_id"],
                                                             reason_id=row["reason_id"],
                                                             level=row["level"],
-                                                            database=self)
+                                                            database=self,
+                                                            threshold=row["threshold"])
 
     def _create_tasks_terms(self, path):
         data = pandas.read_csv(os.path.join(path, "tasks_terms.csv"))

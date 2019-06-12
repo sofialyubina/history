@@ -13,4 +13,3 @@ class TasksTerm(Task):
 
     def score(self, answer):
         return True
-
