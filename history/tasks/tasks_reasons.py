@@ -15,4 +15,5 @@ class TasksReason(Task):
         self.question = "Назовите причины данного события: " + self.event.event
 
     def score(self, answer):
-        return matching.calc_vectors_score(self.reason.description, answer, self.database.vectors) >= self.thresold
+        #return matching.calc_vectors_score(self.reason.description, answer, self.database.vectors) >= self.thresold
+        return matching.calc_vectors_score(self.reason.description, answer, self.database.vectors) >= 0.5
