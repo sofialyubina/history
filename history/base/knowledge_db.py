@@ -15,6 +15,8 @@ from ..tasks.tasks_reasons import TasksReason
 from ..tasks.tasks_results import TasksResult
 from ..tasks.tasks_terms import TasksTerm
 
+from ..algorithms.matching import load_vectors
+
 import os
 
 
@@ -41,6 +43,8 @@ class KnowledgeDatabase(object):
         self._create_tasks_reason(path)
         self._create_tasks_result(path)
         self._create_tasks_terms(path)
+
+        self.vectors = load_vectors(os.path.join(path, "vectors"))
 
     def _create_events(self, path):
         data = pandas.read_csv(os.path.join(path, "events.csv"))

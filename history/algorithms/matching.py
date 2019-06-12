@@ -2,18 +2,22 @@ import re
 import numpy as np
 
 
-vectors = {}
-with open("/var/www/html/vectors", "r") as infile:
-    infile.readline()
+def load_vectors(path):
+    vectors = {}
 
-    for line in infile:
-        elements = line.strip().split(" ")
-        word = elements[0]
-        vector = []
-        for element in elements[1:]:
-            vector.append(float(element))
+    with open(path, "r") as infile:
+        infile.readline()
 
-        vectors[word] = np.array(vector)
+        for line in infile:
+            elements = line.strip().split(" ")
+            word = elements[0]
+            vector = []
+            for element in elements[1:]:
+                vector.append(float(element))
+
+            vectors[word] = np.array(vector)
+
+    return vectors
 
 
 def clean_text(text):
@@ -101,7 +105,7 @@ def calc_vector_len(vector):
     return np.sqrt(np.sum(vector * vector))
 
 
-def middle_vector(a, vectors=vectors):
+def middle_vector(a, vectors):
     result = np.zeros(300)
 
     words = get_words(a)
@@ -119,7 +123,7 @@ def middle_vector(a, vectors=vectors):
     return result
 
 
-def calc_vectors_score(first, second, vectors=vectors):
+def calc_vectors_score(first, second, vectors):
     a = middle_vector(first, vectors)
     b = middle_vector(second, vectors)
 
